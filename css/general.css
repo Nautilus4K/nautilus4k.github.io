@@ -1,0 +1,167 @@
+:root {
+    --bg: #080808;
+    --fg: #fff;
+    --bigname-highlight: #0e0e0e;
+    --bigname-innerglow: #202641;
+    --bigname-outerglow: #2f40a0;
+    --popup-outline: #353535;
+    --popup-button-inactive: #1d1d1d;
+    --popup-button-inactive-textcolor: #fff;
+    --popup-button-active: #ffffff;
+    --popup-button-active-textcolor: #000;
+    --loud-ass-bezier: cubic-bezier(.13,.62,.39,.86);
+
+    --popup-padding: 35px 45px;
+}
+
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url("/fonts/CascadiaCode.ttf");
+}
+
+/* No Dark and Light mode for ya */
+html, body {
+    background-color: var(--bg);
+    color: var(--fg);
+
+    font-family: 'Cascadia Code';
+
+    margin: 0;
+    padding: 0;
+
+    /* Much needed formatting */
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+button {
+    background-color: transparent;
+    font-family: 'Cascadia Code';
+    /* background-color: var(--bg); */
+    color: var(--fg);
+    background-repeat: no-repeat;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.bigname {
+    background: radial-gradient(circle at top left, var(--bigname-outerglow), var(--bigname-highlight));
+    background-color: var(--bigname-outerglow);
+    transform: rotateX(15deg) rotateY(25deg);
+    box-shadow: 0 20px 50px rgba(47, 64, 160, 0.5);
+    text-shadow: 0 2px 2px #000, 0 0 20px var(--bigname-outerglow);
+
+    background-repeat: no-repeat;
+    background-size: 150%;
+    background-position: -100px 0px;
+
+    transition: background-position 0.4s ease, transform 0.4s var(--loud-ass-bezier);
+}
+
+.bigname:hover {
+    /* transform: translate3d(12px, 0px 3px); */
+    /* transform: translateX(40px); */
+    /* background: radial-gradient(circle at top left, #2f40a0, #0e0e0e); */
+
+    background-position: 120px 0px;
+    transform: rotateX(15deg) rotateY(-25deg);
+}
+
+@keyframes popup-show {
+    0% {
+        transform: scale(0.6);
+        opacity: 0%;
+        padding: 0px;
+    }
+
+    100% {
+        transform: scale(1.0);
+        /* font-size: 14px; */
+        opacity: 100%;
+        padding: var(--popup-padding);
+    }
+}
+
+@keyframes popup-hide {
+    0% {
+        opacity: 100%;
+        padding: var(--popup-padding);
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0%;
+        padding: 50px;
+    }
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+
+    visibility: hidden;
+    position: absolute;
+    background-color: var(--bg);
+    color: var(--fg);
+
+    max-width: 60%;
+    max-height: 80%;
+
+    /* other styling */
+    outline: 2px solid var(--popup-outline);
+    border-radius: 10px;
+
+    /* now we just have to increase the paddings */
+    padding: var(--popup-padding);
+
+    overflow: hidden;
+}
+
+.popup.show {
+    visibility: visible;
+    /* animation: fadeIn 1s; */
+    animation-name: popup-show;
+    animation-direction: normal;
+    animation-duration: .4s;
+    animation-timing-function: var(--loud-ass-bezier);
+}
+
+.popup.hiding {
+    visibility: visible;
+    /* animation: fadeIn 1s; */
+    animation-name: popup-hide;
+    animation-direction: normal;
+    animation-duration: .4s;
+    animation-timing-function: var(--loud-ass-bezier);
+}
+
+.popup button {
+    background-color: var(--popup-button-inactive);
+    color: var(--popup-button-inactive-textcolor);
+    border-radius: 10px;
+    padding: 20px;
+    align-items: end;
+    justify-content: right;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+
+    transition: .2s var(--loud-ass-bezier);
+}
+
+.popup button:hover {
+    background-color: var(--popup-button-active);
+    color: var(--popup-button-active-textcolor);
+    padding: 20px 40px;
+}

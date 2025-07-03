@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="Nautilus4K" content="About Nautilus4K" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="/css/general.css">
+
         <title>Nautilus4K</title>
+
+        <script src="/scripts/index.js" defer></script>
     </head>
+    <body>
+        <button onclick="onNameClicked()"><h1 class="bigname">I'm Nautilus4K</h1></button>
+
+        <div class="popup" id="popup_dialog">
+            <h1 id="popup_header"></h1>
+            <p id="popup_desc"></p>
+            <button onclick="closePopUp()" id="popup_close">Close</button>
+        </div>
+    </body>
 </html>
